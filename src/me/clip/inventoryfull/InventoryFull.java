@@ -30,11 +30,6 @@ public class InventoryFull extends JavaPlugin implements Listener {
 	
 	private IFOptions options;
 	
-	private boolean hookTitleManager;
-	private boolean hookActionAnnouncer;
-	private boolean hookHolo;
-	private boolean hookAutoSell;
-	
 	private HoloMsg holo;
 	private ActionMsg aa;
 	private TitleMsg tm;
@@ -46,7 +41,7 @@ public class InventoryFull extends JavaPlugin implements Listener {
 		
 		options = new IFOptions(this);
 		
-		hookAutoSell = Bukkit.getPluginManager().isPluginEnabled("AutoSell");
+		boolean hookAutoSell = Bukkit.getPluginManager().isPluginEnabled("AutoSell");
 
 		if (hookAutoSell) {
 			
@@ -67,7 +62,7 @@ public class InventoryFull extends JavaPlugin implements Listener {
 
 	private void initHooks() {
 
-		hookActionAnnouncer = Bukkit.getPluginManager().isPluginEnabled("ActionAnnouncer");
+		boolean hookActionAnnouncer = Bukkit.getPluginManager().isPluginEnabled("ActionAnnouncer");
 
 		if (hookActionAnnouncer) {
 
@@ -81,7 +76,7 @@ public class InventoryFull extends JavaPlugin implements Listener {
 			getLogger().info("*** Could not hook into ActionAnnouncer! ***");
 		}
 
-		hookTitleManager = Bukkit.getPluginManager().isPluginEnabled("TitleManager");
+		boolean hookTitleManager = Bukkit.getPluginManager().isPluginEnabled("TitleManager");
 		
 		if (hookTitleManager) {
 			
@@ -95,7 +90,7 @@ public class InventoryFull extends JavaPlugin implements Listener {
 			getLogger().info("*** Could not hook into TitleManager! ***");
 		}
 		
-		hookHolo = Bukkit.getPluginManager().isPluginEnabled("HolographicDisplays");
+		boolean hookHolo = Bukkit.getPluginManager().isPluginEnabled("HolographicDisplays");
 		
 		if (hookHolo) {
 			
@@ -167,21 +162,21 @@ public class InventoryFull extends JavaPlugin implements Listener {
 			}
 		}
 
-		if (hookHolo && opt.useHolo() && holo != null) {
+		if (opt.useHolo() && holo != null) {
 			holo.send(p, opt.getHoloMsg(), type);
 		}
 
-		if (hookActionAnnouncer && opt.useActionAnnouncer() && aa != null) {
+		if (opt.useActionAnnouncer() && aa != null) {
 			aa.send(p, opt.getActionMsg(), type, opt.getActionTime());
 		}
 
-		if (hookTitleManager && opt.useTitleManager() && this.tm != null) {
+		if (opt.useTitleManager() && this.tm != null) {
 			this.tm.sendTitle(p, opt.getTitleMsg(),
 					opt.getSubTitleMsg(), type, opt.getFadeIn(),
 					opt.getDuration(), opt.getFadeOut());
 		}
 
-		if (hookTitleManager && opt.useTitleABar() && tm != null) {
+		if (opt.useTitleABar() && tm != null) {
 			this.tm.sendActionbar(p, opt.getTitleABarMsg(), type);
 		}
 		
