@@ -157,45 +157,51 @@ public class InventoryFull extends JavaPlugin implements Listener {
 			return;
 		}
 		
+		IFOptions opt = getOptions();
+		
 		String type = e.getItem().getType().name();
 		
-		if (options.useChatMsg()) {
-			for (String line : options.getChatMsg()) {
+		if (opt.useChatMsg()) {
+			for (String line : opt.getChatMsg()) {
 				sms(p, line.replace("%player%", p.getName()).replace("%block%", type));
 			}
 		}
 
-		if (hookHolo && options.useHolo() && holo != null) {
-			holo.send(p, options.getHoloMsg(), type);
+		if (hookHolo && opt.useHolo() && holo != null) {
+			holo.send(p, opt.getHoloMsg(), type);
 		}
 
-		if (hookActionAnnouncer && options.useActionAnnouncer() && aa != null) {
-			aa.send(p, options.getActionMsg(), type, options.getActionTime());
+		if (hookActionAnnouncer && opt.useActionAnnouncer() && aa != null) {
+			aa.send(p, opt.getActionMsg(), type, opt.getActionTime());
 		}
 
-		if (hookTitleManager && options.useTitleManager() && this.tm != null) {
-			this.tm.sendTitle(p, options.getTitleMsg(),
-					options.getSubTitleMsg(), type, options.getFadeIn(),
-					options.getDuration(), options.getFadeOut());
+		if (hookTitleManager && opt.useTitleManager() && this.tm != null) {
+			this.tm.sendTitle(p, opt.getTitleMsg(),
+					opt.getSubTitleMsg(), type, opt.getFadeIn(),
+					opt.getDuration(), opt.getFadeOut());
 		}
 
-		if (hookTitleManager && options.useTitleABar() && tm != null) {
-			this.tm.sendActionbar(p, options.getTitleABarMsg(), type);
+		if (hookTitleManager && opt.useTitleABar() && tm != null) {
+			this.tm.sendActionbar(p, opt.getTitleABarMsg(), type);
 		}
 		
-		if (!options.useSound()) {
+		if (!opt.useSound()) {
 			return;
 		}
 		
 		try {
 			
-			Sound s = Sound.valueOf(options.getSound().toUpperCase());
+			Sound s = Sound.valueOf(getOptions().getSound().toUpperCase());
 			
 			if (s != null) {
-				p.playSound(p.getLocation(), s, options.getVolume(), options.getPitch());
+				p.playSound(p.getLocation(), s, getOptions().getVolume(), opt.getPitch());
 			}
 			
 		} catch (Exception ex) {
+			getLogger().warning("Your inventory full sound "+opt.getSound()+" is invalid!");
+			getLogger().info("Valid sound names can be found at the following link:");
+			getLogger().info("https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html");
+			
 		}
 	}
 
