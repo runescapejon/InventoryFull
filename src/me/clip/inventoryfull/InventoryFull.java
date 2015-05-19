@@ -60,9 +60,9 @@ public class InventoryFull extends JavaPlugin implements Listener {
 
 	private void initHooks() {
 		
-		IFOptions options = getOptions();
+		IFOptions opt = getOptions();
 
-		if (options.useActionAnnouncer()) {
+		if (opt.useActionAnnouncer()) {
 			if (Bukkit.getPluginManager().isPluginEnabled("ActionAnnouncer")) {
 
 				if (aa == null) {
@@ -76,7 +76,7 @@ public class InventoryFull extends JavaPlugin implements Listener {
 			}
 		}
 		
-		if (options.useTitleManager() || options.useTitleABar()) {
+		if (opt.useTitleManager() || opt.useTitleABar()) {
 			if (Bukkit.getPluginManager().isPluginEnabled("TitleManager")) {
 
 				if (tm == null) {
@@ -90,7 +90,7 @@ public class InventoryFull extends JavaPlugin implements Listener {
 			}
 		}
 		
-		if (options.useHolo()) {
+		if (opt.useHolo()) {
 			if (Bukkit.getPluginManager().isPluginEnabled("HolographicDisplays")) {
 
 				if (holo == null) {
