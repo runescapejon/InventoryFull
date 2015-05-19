@@ -1,0 +1,17 @@
+name: InventoryFull
+author: extended_clip
+main: me.clip.inventoryfull.InventoryFull
+version: 1.6
+description: Be alerted when your inventory is full!
+softdepend: [AutoSell, HolographicDisplays, TitleManager, ActionAnnouncer]
+permissions:
+    inventoryfull.admin:
+        description: Ability to use /inventoryfull and /inventoryfull reload
+        default: op
+    inventoryfull.alert:
+        description: be alerted when your inventory is full and you mine a block that won't fit!
+        default: true
+commands:
+   inventoryfull:
+     description: Admin command for InventoryFull
+     aliases: [invfull, infull]

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/Desktop/PluginDependencies/spigot-1.8.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/Desktop/PluginDependencies/spigot-api-1.8.4-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/Desktop/ActionAnnouncer.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/Desktop/PluginDependencies/HolographicDisplaysAPI_v2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/Desktop/PluginDependencies/TitleManager-1.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/Desktop/AutoSell.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
