@@ -40,10 +40,8 @@ public class InventoryFull extends JavaPlugin implements Listener {
 		loadDefConfig();
 		
 		options = new IFOptions(this);
-		
-		boolean hookAutoSell = Bukkit.getPluginManager().isPluginEnabled("AutoSell");
 
-		if (hookAutoSell) {
+		if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
 			
 			Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);
 			getLogger().info("*** Hooked into AutoSell! ***");
@@ -61,47 +59,49 @@ public class InventoryFull extends JavaPlugin implements Listener {
 	}
 
 	private void initHooks() {
-
-		boolean hookActionAnnouncer = Bukkit.getPluginManager().isPluginEnabled("ActionAnnouncer");
-
-		if (hookActionAnnouncer) {
-
-			if (aa == null) {
-				aa = new ActionMsg(this);
-			}
-			getLogger().info("*** Hooked into ActionAnnouncer! ***");
-
-		} else {
-
-			getLogger().info("*** Could not hook into ActionAnnouncer! ***");
-		}
-
-		boolean hookTitleManager = Bukkit.getPluginManager().isPluginEnabled("TitleManager");
 		
-		if (hookTitleManager) {
-			
-			if (tm == null) {
-				tm = new TitleMsg();
+		IFOptions options = getOptions();
+
+		if (options.useActionAnnouncer()) {
+			if (Bukkit.getPluginManager().isPluginEnabled("ActionAnnouncer")) {
+
+				if (aa == null) {
+					aa = new ActionMsg(this);
+				}
+				getLogger().info("*** Hooked into ActionAnnouncer! ***");
+
+			} else {
+
+				getLogger().info("*** Could not hook into ActionAnnouncer! ***");
 			}
-			getLogger().info("*** Hooked into TitleManager! ***");
-		
-		} else {
-			
-			getLogger().info("*** Could not hook into TitleManager! ***");
 		}
 		
-		boolean hookHolo = Bukkit.getPluginManager().isPluginEnabled("HolographicDisplays");
-		
-		if (hookHolo) {
-			
-			if (holo == null) {
-				holo = new HoloMsg(this);
+		if (options.useTitleManager() || options.useTitleABar()) {
+			if (Bukkit.getPluginManager().isPluginEnabled("TitleManager")) {
+
+				if (tm == null) {
+					tm = new TitleMsg();
+				}
+				getLogger().info("*** Hooked into TitleManager! ***");
+
+			} else {
+
+				getLogger().info("*** Could not hook into TitleManager! ***");
 			}
-			getLogger().info("*** Hooked into HolographicDisplays! ***");
-			
-		} else {
-			
-			getLogger().info("*** Could not hook into HolographicDisplays! ***");
+		}
+		
+		if (options.useHolo()) {
+			if (Bukkit.getPluginManager().isPluginEnabled("HolographicDisplays")) {
+
+				if (holo == null) {
+					holo = new HoloMsg(this);
+				}
+				getLogger().info("*** Hooked into HolographicDisplays! ***");
+
+			} else {
+
+				getLogger().info("*** Could not hook into HolographicDisplays! ***");
+			}
 		}
 	}
 
@@ -224,6 +224,9 @@ public class InventoryFull extends JavaPlugin implements Listener {
 			reloadConfig();
 			saveConfig();
 			options = new IFOptions(this);
+			holo = null;
+			aa = null;
+			tm = null;
 			initHooks();
 			sms(s, "&cInventoryFull &7configuration successfully reloaded!");
 			
