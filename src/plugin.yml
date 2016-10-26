@@ -1,9 +1,9 @@
 name: InventoryFull
 author: extended_clip
 main: me.clip.inventoryfull.InventoryFull
-version: 1.6
+version: 1.8
 description: Be alerted when your inventory is full!
-softdepend: [AutoSell, HolographicDisplays, TitleManager, ActionAnnouncer]
+softdepend: [AutoSell, HolographicDisplays, TitleManager, ActionAnnouncer, VKBackPack]
 permissions:
     inventoryfull.admin:
         description: Ability to use /inventoryfull and /inventoryfull reload
